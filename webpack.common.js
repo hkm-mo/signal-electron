@@ -5,7 +5,7 @@ const webpack = require("webpack")
 module.exports = {
   context: __dirname,
   entry: {
-    browserLanding: "./src/landing/index.ts",
+    browserMain: "./src/main/index.tsx",
   },
   output: {
     filename: "[name]-[chunkhash].js",
