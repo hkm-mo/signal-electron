@@ -14,7 +14,6 @@ import PianoIcon from "../../images/icons/piano.svg"
 import TempoIcon from "../../images/icons/tempo.svg"
 import Logo from "../../images/logo-circle.svg"
 import { FileMenuButton } from "./FileMenuButton"
-import { UserButton } from "./UserButton"
 
 const BannerContainer = styled.div`
   background: ${({ theme }) => theme.themeColor};
@@ -84,7 +83,6 @@ export const IconStyle: CSSProperties = {
 export const Navigation: FC = observer(() => {
   const {
     rootViewStore,
-    authStore: { user },
     router,
   } = useStores()
 
@@ -180,7 +178,6 @@ export const Navigation: FC = observer(() => {
         </TabTitle>
       </Tab>
 
-      <UserButton />
     </Container>
   )
 })

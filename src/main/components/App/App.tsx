@@ -26,6 +26,7 @@ Sentry.init({
 })
 
 export function App() {
+  console.log('App started!')
   return (
     <React.StrictMode>
       <StoreContext.Provider value={new RootStore()}>

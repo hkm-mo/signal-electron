@@ -8,8 +8,6 @@ import { MIDIInput, previewMidiInput } from "../services/MIDIInput"
 import { MIDIRecorder } from "../services/MIDIRecorder"
 import { SoundFontSynth } from "../services/SoundFontSynth"
 import ArrangeViewStore from "./ArrangeViewStore"
-import { AuthStore } from "./AuthStore"
-import { CloudFileStore } from "./CloudFileStore"
 import { ExportStore } from "./ExportStore"
 import HistoryStore from "./HistoryStore"
 import { MIDIDeviceStore } from "./MIDIDeviceStore"
@@ -31,8 +29,6 @@ export default class RootStore {
   readonly tempoEditorStore = new TempoEditorStore(this)
   readonly midiDeviceStore = new MIDIDeviceStore()
   readonly exportStore = new ExportStore()
-  readonly authStore = new AuthStore()
-  readonly cloudFileStore = new CloudFileStore()
   readonly settingStore = new SettingStore()
   readonly player: Player
   readonly synth: SoundFontSynth

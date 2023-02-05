@@ -8,9 +8,7 @@
     "serve": "npx http-server dist",
     "test": "jest",
     "format": "prettier --write src",
-    "lint": "prettier --check src",
-    "firebase": "firebase emulators:start",
-    "firebase:deploy": "firebase deploy"
+    "lint": "prettier --check src"
   },
   "repository": {
     "type": "git",
@@ -40,8 +38,6 @@
     "@sentry/react": "^7.23.0",
     "@sentry/tracing": "^7.23.0",
     "color": "^4.2.3",
-    "firebase": "^9.14.0",
-    "firebaseui": "^6.0.2",
     "gl-matrix": "^3.4.3",
     "lodash": "^4.17.21",
     "mdi-react": "^9.0.0",

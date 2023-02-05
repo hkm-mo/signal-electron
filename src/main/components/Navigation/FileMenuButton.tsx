@@ -6,7 +6,6 @@ import { Localized } from "../../../components/Localized"
 import { Menu, MenuDivider, MenuItem } from "../../../components/Menu"
 import { hasFSAccess } from "../../actions/file"
 import { useStores } from "../../hooks/useStores"
-import { CloudFileMenu } from "./CloudFileMenu"
 import { FileMenu } from "./FileMenu"
 import { LegacyFileMenu } from "./LegacyFileMenu"
 import { Tab } from "./Navigation"
@@ -16,7 +15,6 @@ export const FileMenuButton: FC = observer(() => {
   const {
     rootViewStore,
     exportStore,
-    authStore: { user },
   } = rootStore
   const isOpen = rootViewStore.openDrawer
   const handleClose = () => (rootViewStore.openDrawer = false)
@@ -45,13 +43,11 @@ export const FileMenuButton: FC = observer(() => {
         </Tab>
       }
     >
-      {user === null && hasFSAccess && <FileMenu close={handleClose} />}
+      {hasFSAccess && <FileMenu close={handleClose} />}
 
-      {user === null && !hasFSAccess && <LegacyFileMenu close={handleClose} />}
+      {!hasFSAccess && <LegacyFileMenu close={handleClose} />}
 
-      {user && <CloudFileMenu close={handleClose} />}
-
-      {user === null && (
+      {(
         <>
           <MenuDivider />
           <MenuItem
