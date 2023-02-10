@@ -1,5 +1,3 @@
-import * as Sentry from "@sentry/react"
-import { Integrations } from "@sentry/tracing"
 import React from "react"
 import { HelmetProvider } from "react-helmet-async"
 import { defaultTheme } from "../../../common/theme/Theme"
@@ -16,14 +14,6 @@ import { GlobalKeyboardShortcut } from "../KeyboardShortcut/GlobalKeyboardShortc
 import { RootView } from "../RootView/RootView"
 import { EmotionThemeProvider } from "../Theme/EmotionThemeProvider"
 import { GlobalCSS } from "../Theme/GlobalCSS"
-
-Sentry.init({
-  dsn: process.env.SENTRY_DSN,
-  release: process.env.VERCEL_GIT_COMMIT_SHA,
-  environment: process.env.VERCEL_ENV,
-  integrations: [new Integrations.BrowserTracing()],
-  tracesSampleRate: 1.0,
-})
 
 export function App() {
   console.log('App started!')
