@@ -47,23 +47,6 @@ export const FileMenuButton: FC = observer(() => {
 
       {!hasFSAccess && <LegacyFileMenu close={handleClose} />}
 
-      {(
-        <>
-          <MenuDivider />
-          <MenuItem
-            onClick={() => {
-              handleClose()
-              rootViewStore.openSignInDialog = true
-            }}
-          >
-            <CloudOutlined style={{ marginRight: "0.5em" }} />
-            <Localized default="Sign up to use Cloud Save">
-              please-sign-up
-            </Localized>
-          </MenuItem>
-        </>
-      )}
-
       <MenuDivider />
 
       <MenuItem onClick={onClickExport}>

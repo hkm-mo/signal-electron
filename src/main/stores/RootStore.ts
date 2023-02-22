@@ -44,11 +44,11 @@ export default class RootStore {
     const context = new (window.AudioContext || window.webkitAudioContext)()
     this.synth = new SoundFontSynth(
       context,
-      "https://cdn.jsdelivr.net/gh/ryohey/signal@4569a31/public/A320U.sf2"
+      "./A320U.sf2"
     )
     const metronomeSynth = new SoundFontSynth(
       context,
-      "https://cdn.jsdelivr.net/gh/ryohey/signal@6959f35/public/A320U_drums.sf2"
+      "./A320U_drums.sf2"
     )
     this.synthGroup.outputs.push({ synth: this.synth, isEnabled: true })
 

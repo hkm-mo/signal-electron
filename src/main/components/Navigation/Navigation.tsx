@@ -72,6 +72,11 @@ export const TabTitle = styled.span`
 
 const FlexibleSpacer = styled.div`
   flex-grow: 1;
+  -webkit-app-region: drag;
+`
+
+const WindowControlSpacer = styled.div`
+  width: 138px;
 `
 
 export const IconStyle: CSSProperties = {
@@ -171,12 +176,7 @@ export const Navigation: FC = observer(() => {
         </TabTitle>
       </Tab>
 
-      <Tab id="open-gitter-button">
-        <Forum style={IconStyle} />
-        <TabTitle>
-          <Localized default="Open Chat">open-chat</Localized>
-        </TabTitle>
-      </Tab>
+      <WindowControlSpacer  />
 
     </Container>
   )
