@@ -13,6 +13,7 @@ import ArrangeIcon from "../../images/icons/arrange.svg"
 import PianoIcon from "../../images/icons/piano.svg"
 import TempoIcon from "../../images/icons/tempo.svg"
 import Logo from "../../images/logo-circle.svg"
+import { Head } from "../Head/Head"
 import { FileMenuButton } from "./FileMenuButton"
 
 const BannerContainer = styled.div`
@@ -70,8 +71,13 @@ export const TabTitle = styled.span`
   }
 `
 
-const FlexibleSpacer = styled.div`
+const TitleBar = styled.div`
   flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+  font-size: 14px;
   -webkit-app-region: drag;
 `
 
@@ -89,6 +95,7 @@ export const Navigation: FC = observer(() => {
   const {
     rootViewStore,
     router,
+    song,
   } = useStores()
 
   return (
@@ -155,7 +162,10 @@ export const Navigation: FC = observer(() => {
         </Tab>
       </Tooltip>
 
-      <FlexibleSpacer />
+      <TitleBar>
+        {song.name.length === 0 ? "New song" : song.name}
+        {song.isSaved ? "" : " *"}
+      </TitleBar>
 
       <Tab
         onClick={useCallback(

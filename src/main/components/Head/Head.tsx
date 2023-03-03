@@ -7,11 +7,9 @@ export const Head: FC = observer(() => {
   const { song } = useStores()
 
   return (
-    <Helmet>
-      <title>
-        {song.name.length === 0 ? "New song" : song.name}
-        {song.isSaved ? "" : " *"}
-      </title>
-    </Helmet>
+    <div>
+      {song.name.length === 0 ? "New song" : song.name}
+      {song.isSaved ? "" : " *"}
+    </div>
   )
 })

@@ -23,7 +23,7 @@ export default class Song {
   filepath: string = ""
   timebase: number = TIME_BASE
   name: string = ""
-  fileHandle: FileSystemFileHandle | null = null
+  filePath: string | null = null
   isSaved = true
 
   constructor() {

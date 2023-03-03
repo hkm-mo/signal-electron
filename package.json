@@ -23,6 +23,7 @@
   "homepage": "https://github.com/ryohey/signal/",
   "private": true,
   "dependencies": {
+    "@electron/remote": "^2.0.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@radix-ui/react-checkbox": "^1.0.1",

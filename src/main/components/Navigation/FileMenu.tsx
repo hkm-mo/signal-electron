@@ -63,7 +63,7 @@ export const FileMenu: FC<{ close: () => void }> = observer(({ close }) => {
 
       <MenuItem
         onClick={onClickSave}
-        disabled={rootStore.song.fileHandle === null}
+        disabled={rootStore.song.filePath === null}
       >
         <Localized default="Save">save-song</Localized>
       </MenuItem>

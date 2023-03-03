@@ -59,7 +59,6 @@ export const RootView: FC = () => (
     <ExportProgressDialog />
     <PianoRollTransposeDialog />
     <ArrangeTransposeDialog />
-    <Head />
     <SettingDialog />
     <OnBeforeUnload />
   </>
