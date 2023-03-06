@@ -20,10 +20,9 @@ const END_MARGIN = 480 * 30
 export default class Song {
   tracks: Track[] = []
   selectedTrackId: number = 0
-  filepath: string = ""
+  filePath: string = ""
   timebase: number = TIME_BASE
   name: string = ""
-  filePath: string | null = null
   isSaved = true
 
   constructor() {
@@ -39,7 +38,7 @@ export default class Song {
       allEvents: computed({ keepAlive: true }),
       tracks: observable.shallow,
       selectedTrackId: observable,
-      filepath: observable,
+      filePath: observable,
       timebase: observable,
       name: observable,
       isSaved: observable,

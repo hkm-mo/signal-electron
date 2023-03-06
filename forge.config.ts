@@ -18,14 +18,13 @@ const config: ForgeConfig = {
       mainConfig,
       renderer: {
         config: rendererConfig,
-        nodeIntegration: true,
         entryPoints: [
           {
             html: './public/index.html',
             js: "./src/main/index.tsx",
             name: 'main_window',
             preload: {
-              js: './src/preload.ts',
+              js: './src/main/preload.ts',
             },
           },
         ],

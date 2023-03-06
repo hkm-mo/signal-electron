@@ -1,6 +1,14 @@
-declare module "*.png"
-declare module "*.svg"
+import FileData from "src/common/FileData";
 
-interface Window {
-  webkitAudioContext: typeof AudioContext
+declare module "*.png";
+declare module "*.svg";
+
+declare global {
+    interface Window {
+        webkitAudioContext: typeof AudioContext,
+        ipcApi: {
+            openFile: () => Promise<FileData>,
+            saveFile: (fileData: FileData) => Promise<FileData>,
+        }
+    }
 }

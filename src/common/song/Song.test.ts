@@ -30,10 +30,10 @@ describe("Song", () => {
 
   it("should be serializable", () => {
     const song = emptySong()
-    song.filepath = "abc"
+    song.filePath = "abc"
     const x = serialize(song)
     const s = deserialize(Song, x)
-    expect(s.filepath).toBe("abc")
+    expect(s.filePath).toBe("abc")
     expect(s.tracks.length).toBe(song.tracks.length)
   })
 })

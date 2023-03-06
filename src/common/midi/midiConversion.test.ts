@@ -29,7 +29,7 @@ describe("SongFile", () => {
     song.tracks.forEach(reassignIDs)
     const bytes = songToMidi(song)
     const song2 = songFromMidi(bytes)
-    song2.filepath = song.filepath // filepath will not be serialized
+    song2.filePath = song.filePath // filepath will not be serialized
     expect(serialize(song2)).toStrictEqual(serialize(song))
   })
   describe("songToMidiEvents", () => {

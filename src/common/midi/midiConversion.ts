@@ -124,5 +124,5 @@ export function songToMidi(song: Song) {
 export function downloadSongAsMidi(song: Song) {
   const bytes = songToMidi(song)
   const blob = new Blob([bytes], { type: "application/octet-stream" })
-  downloadBlob(blob, song.filepath.length > 0 ? song.filepath : "no name.mid")
+  downloadBlob(blob, song.filePath.length > 0 ? song.filePath : "no name.mid")
 }

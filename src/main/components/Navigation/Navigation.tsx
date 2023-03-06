@@ -76,7 +76,9 @@ const TitleBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #666;
+  color: #8e96ab;
+  font-size: 0.8rem;
+  font-weight: 600;
   font-size: 14px;
   -webkit-app-region: drag;
 `

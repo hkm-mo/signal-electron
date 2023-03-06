@@ -26,9 +26,6 @@
     "useDefineForClassFields": true,
     "resolveJsonModule": true,
     "strict": true,
-    "paths": {
-      "*": ["node_modules/*"]
-    }
   },
   "include": ["src/**/*"]
 }
