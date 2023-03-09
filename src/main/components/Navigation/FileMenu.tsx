@@ -14,14 +14,8 @@ export const FileMenu: FC<{ close: () => void }> = observer(({ close }) => {
   const localized = useLocalization()
 
   const onClickNew = () => {
-    const { song } = rootStore
     close()
-    if (
-      song.isSaved ||
-      confirm(localized("confirm-new", "Are you sure you want to continue?"))
-    ) {
-      createSong(rootStore)()
-    }
+    window.ipcApi.newWindow()
   }
 
   const onClickOpen = async () => {

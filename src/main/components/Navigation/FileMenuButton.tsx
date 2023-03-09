@@ -1,13 +1,10 @@
-import CloudOutlined from "mdi-react/CloudOutlineIcon"
 import KeyboardArrowDown from "mdi-react/KeyboardArrowDownIcon"
 import { observer } from "mobx-react-lite"
 import { FC, useCallback, useRef } from "react"
 import { Localized } from "../../../components/Localized"
 import { Menu, MenuDivider, MenuItem } from "../../../components/Menu"
-import { hasFSAccess } from "../../actions/file"
 import { useStores } from "../../hooks/useStores"
 import { FileMenu } from "./FileMenu"
-import { LegacyFileMenu } from "./LegacyFileMenu"
 import { Tab } from "./Navigation"
 
 export const FileMenuButton: FC = observer(() => {
@@ -43,9 +40,7 @@ export const FileMenuButton: FC = observer(() => {
         </Tab>
       }
     >
-      {hasFSAccess && <FileMenu close={handleClose} />}
-
-      {!hasFSAccess && <LegacyFileMenu close={handleClose} />}
+      <FileMenu close={handleClose} />
 
       <MenuDivider />
 

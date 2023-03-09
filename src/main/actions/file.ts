@@ -38,7 +38,7 @@ export const saveFile = async (rootStore: RootStore) => {
     song.name = fileData.name
     song.filePath = fileData.path
     song.isSaved = true
-  } else {
+  } else if (!fileData.userCancelled) {
     alert("unable to save file")
   }
 }
@@ -56,7 +56,7 @@ export const saveFileAs = async (rootStore: RootStore) => {
     song.name = fileData.name
     song.filePath = fileData.path
     song.isSaved = true
-  } else {
+  } else if (!fileData.userCancelled) {
     alert("unable to save file")
   }
 }

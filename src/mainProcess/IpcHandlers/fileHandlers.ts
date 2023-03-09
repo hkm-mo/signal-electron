@@ -1,12 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
-import { dialog, BrowserWindow, WebContents, IpcMain, IpcMainInvokeEvent, FileFilter } from 'electron';
-import FileData from "../common/FileData";
-
-export function initIpcHandle(browserWindow: BrowserWindow, webContents: WebContents) {
-    initOpenFileHandle(browserWindow, webContents.ipc);
-    initSaveFileHandle(browserWindow, webContents.ipc);
-}
+import { dialog, BrowserWindow, IpcMain, IpcMainInvokeEvent, FileFilter } from "electron";
+import FileData from "../../common/FileData";
 
 const fileFilters: FileFilter[] = [
     {
@@ -15,9 +10,8 @@ const fileFilters: FileFilter[] = [
     }
 ];
 
-
-function initOpenFileHandle(browserWindow: BrowserWindow, ipc: IpcMain) {
-    ipc.handle('openFile', async (event: IpcMainInvokeEvent) => {
+export function initFileHandlers(browserWindow: BrowserWindow, ipc: IpcMain) {
+    ipc.handle("openFile", async (event: IpcMainInvokeEvent) => {
         let result = {} as FileData;
         const file = await dialog.showOpenDialog(browserWindow, {
             filters: fileFilters,
@@ -36,12 +30,11 @@ function initOpenFileHandle(browserWindow: BrowserWindow, ipc: IpcMain) {
                 dialog.showErrorBox("Error", `An error occured trying to open the file. (${error})`);
             }
         }
+        result.userCancelled = file.canceled;
         return result;
-    })
-}
+    });
 
-function initSaveFileHandle(browserWindow: BrowserWindow, ipc: IpcMain) {
-    ipc.handle('saveFile', async (event: IpcMainInvokeEvent, fileData: FileData) => {
+    ipc.handle("saveFile", async (event: IpcMainInvokeEvent, fileData: FileData) => {
         let result = {...fileData };
         let filePath = fileData.path;
         if (!filePath) {
@@ -53,6 +46,8 @@ function initSaveFileHandle(browserWindow: BrowserWindow, ipc: IpcMain) {
             if (!file.canceled && file.filePath) {
                 filePath = file.filePath;
             }
+
+            result.userCancelled = file.canceled;
         }
 
         if (filePath) {
@@ -68,7 +63,7 @@ function initSaveFileHandle(browserWindow: BrowserWindow, ipc: IpcMain) {
         }
 
         return result
-    })
+    });
 }
 
 async function readFile(filePath: string) {

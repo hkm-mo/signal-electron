@@ -22,7 +22,7 @@ export default class Song {
   selectedTrackId: number = 0
   filePath: string = ""
   timebase: number = TIME_BASE
-  name: string = ""
+  name: string = "Untitled Song"
   isSaved = true
 
   constructor() {

@@ -1,4 +1,5 @@
 import { FC, useEffect } from "react"
+import { openFile, saveFile, saveFileAs } from "../../actions/file"
 import {
   fastForwardOneBar,
   nextTrack,
@@ -52,6 +53,10 @@ export const GlobalKeyboardShortcut: FC = () => {
         { code: "KeyZ", metaKey: true, shiftKey: true, run: redo(rootStore) },
         { code: "KeyZ", metaKey: true, shiftKey: false, run: undo(rootStore) },
         { code: "KeyY", metaKey: true, run: redo(rootStore) },
+        { code: "KeyS", metaKey: true, shiftKey: false, run: ()=>saveFile(rootStore) },
+        { code: "KeyS", metaKey: true, shiftKey: true, run: ()=>saveFileAs(rootStore) },
+        { code: "KeyO", metaKey: true, run: ()=>openFile(rootStore) },
+        { code: "KeyN", metaKey: true, run: ()=>window.ipcApi.newWindow() },
         {
           // Press ?
           code: "Slash",

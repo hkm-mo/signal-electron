@@ -16,7 +16,6 @@ import { EmotionThemeProvider } from "../Theme/EmotionThemeProvider"
 import { GlobalCSS } from "../Theme/GlobalCSS"
 
 export function App() {
-  console.log('App started!')
   return (
     <React.StrictMode>
       <StoreContext.Provider value={new RootStore()}>

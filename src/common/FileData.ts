@@ -4,4 +4,5 @@ export default interface FileData {
     basePath?: string,
     buffer: Buffer | Uint8Array,
     isSuccess: boolean,
+    userCancelled?: boolean,
 }
