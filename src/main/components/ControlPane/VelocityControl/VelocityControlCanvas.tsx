@@ -15,13 +15,17 @@ export const VelocityControlCanvas: FC<{ width: number; height: number }> =
   observer(({ width, height }) => {
     const rootStore = useStores()
     const {
-      transform,
-      scrollLeft,
-      windowedEvents,
-      rulerStore: { beats },
-      cursorX,
-    } = rootStore.pianoRollStore
-    const changeVelocity = useCallback(changeNotesVelocity(rootStore), [])
+      pianoRollStore: {
+        transform,
+        scrollLeft,
+        windowedEvents,
+        rulerStore: { beats },
+        cursorX,
+      },
+    } = rootStore
+    const changeVelocity = useCallback(changeNotesVelocity(rootStore), [
+      rootStore,
+    ])
 
     const items = windowedEvents.filter(isNoteEvent).map((note) => {
       const { x } = transform.getRect(note)
@@ -76,7 +80,7 @@ export const VelocityControlCanvas: FC<{ width: number; height: number }> =
           onMouseMove: (e) => changeVelocity(noteIds, calcValue(e)),
         })
       },
-      [height, items]
+      [height, items, changeVelocity]
     )
 
     const scrollXMatrix = useMemo(

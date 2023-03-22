@@ -19,29 +19,27 @@ const END_MARGIN = 480 * 30
 
 export default class Song {
   tracks: Track[] = []
-  selectedTrackId: number = 0
-  filePath: string = ""
+  filepath: string = ""
   timebase: number = TIME_BASE
   name: string = "Untitled Song"
   isSaved = true
+  filePath: string = ""
 
   constructor() {
     makeObservable(this, {
       addTrack: action,
       removeTrack: action,
-      selectTrack: action,
       insertTrack: action,
       conductorTrack: computed,
-      selectedTrack: computed,
       measures: computed,
       endOfSong: computed,
       allEvents: computed({ keepAlive: true }),
       tracks: observable.shallow,
-      selectedTrackId: observable,
-      filePath: observable,
+      filepath: observable,
       timebase: observable,
       name: observable,
       isSaved: observable,
+      filePath: observable,
     })
 
     reaction(
@@ -68,23 +66,11 @@ export default class Song {
   removeTrack(id: number) {
     transaction(() => {
       pullAt(this.tracks, id)
-      this.selectTrack(Math.min(id, this.tracks.length - 1))
     })
-  }
-
-  selectTrack(id: number) {
-    if (id === this.selectedTrackId) {
-      return
-    }
-    this.selectedTrackId = id
   }
 
   get conductorTrack(): Track | undefined {
     return this.tracks.find((t) => t.isConductorTrack)
-  }
-
-  get selectedTrack(): Track | undefined {
-    return this.tracks[this.selectedTrackId]
   }
 
   getTrack(id: number): Track | undefined {
@@ -113,7 +99,6 @@ export default class Song {
 
 createModelSchema(Song, {
   tracks: list(object(Track)),
-  selectedTrackId: primitive(),
   filepath: primitive(),
   timebase: primitive(),
 })

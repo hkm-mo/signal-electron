@@ -17,6 +17,7 @@ import { KeyboardShortcut } from "./KeyboardShortcut"
 
 export const GlobalKeyboardShortcut: FC = () => {
   const rootStore = useStores()
+  const { rootViewStore, router } = rootStore
 
   useEffect(() => {
     // prevent zooming
@@ -61,7 +62,7 @@ export const GlobalKeyboardShortcut: FC = () => {
           // Press ?
           code: "Slash",
           shiftKey: true,
-          run: () => (rootStore.rootViewStore.openHelp = true),
+          run: () => (rootViewStore.openHelp = true),
         },
         { code: "Enter", run: stop(rootStore) },
         { code: "KeyA", run: rewindOneBar(rootStore) },
@@ -74,17 +75,17 @@ export const GlobalKeyboardShortcut: FC = () => {
         {
           code: "Digit1",
           metaKey: true,
-          run: () => (rootStore.router.path = "/track"),
+          run: () => (router.path = "/track"),
         },
         {
           code: "Digit2",
           metaKey: true,
-          run: () => (rootStore.router.path = "/arrange"),
+          run: () => (router.path = "/arrange"),
         },
         {
           code: "Digit3",
           metaKey: true,
-          run: () => (rootStore.router.path = "/tempo"),
+          run: () => (router.path = "/tempo"),
         },
       ]}
     />

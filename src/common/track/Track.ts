@@ -9,8 +9,13 @@ import {
 } from "midifile-ts"
 import { action, computed, makeObservable, observable, transaction } from "mobx"
 import { createModelSchema, list, primitive } from "serializr"
+import { bpmToUSecPerBeat } from "../helpers/bpm"
 import { pojo } from "../helpers/pojo"
-import { programChangeMidiEvent, trackNameMidiEvent } from "../midi/MidiEvent"
+import {
+  programChangeMidiEvent,
+  setTempoMidiEvent,
+  trackNameMidiEvent,
+} from "../midi/MidiEvent"
 import { isControllerEventWithType, isNoteEvent } from "./identify"
 import {
   getLast,
@@ -23,6 +28,8 @@ import {
   getVolume,
   isTickBefore,
 } from "./selector"
+import { isSignalTrackColorEvent, SignalTrackColorEvent } from "./signalEvents"
+import { TrackColor } from "./TrackColor"
 import { TrackEvent, TrackEventOf } from "./TrackEvent"
 import { validateMidiEvent } from "./validate"
 
@@ -49,6 +56,7 @@ export default class Track {
       programNumber: computed,
       isConductorTrack: computed,
       isRhythmTrack: computed,
+      color: computed,
       events: observable.shallow,
       channel: observable,
     })
@@ -241,6 +249,32 @@ export default class Track {
     return maxTick
   }
 
+  get color(): SignalTrackColorEvent | undefined {
+    return this.events.filter(isSignalTrackColorEvent)[0]
+  }
+
+  setColor(color: TrackColor | null) {
+    if (color === null) {
+      const e = this.color
+      if (e !== undefined) {
+        this.removeEvent(e.id)
+      }
+      return
+    }
+    const e = this.color
+    if (e !== undefined) {
+      this.updateEvent<SignalTrackColorEvent>(e.id, color)
+    } else {
+      this.addEvent<TrackEventOf<SignalTrackColorEvent>>({
+        tick: 0,
+        type: "channel",
+        subtype: "signal",
+        signalEventType: "trackColor",
+        ...color,
+      })
+    }
+  }
+
   getPan = (tick: number) => getPan(this.events, tick)
   getVolume = (tick: number) => getVolume(this.events, tick)
   getTempo = (tick: number) => getTempo(this.events, tick)
@@ -267,9 +301,15 @@ export default class Track {
 
   setTempo(bpm: number, tick: number) {
     const e = getTempoEvent(this.events, tick)
+    const microsecondsPerBeat = Math.floor(bpmToUSecPerBeat(bpm))
     if (e !== undefined) {
       this.updateEvent<TrackEventOf<SetTempoEvent>>(e.id, {
-        microsecondsPerBeat: 60000000 / bpm,
+        microsecondsPerBeat,
+      })
+    } else {
+      this.addEvent<TrackEventOf<SetTempoEvent>>({
+        ...setTempoMidiEvent(0, microsecondsPerBeat),
+        tick: 0,
       })
     }
   }
