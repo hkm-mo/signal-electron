@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { dialog, BrowserWindow, IpcMain, IpcMainInvokeEvent, FileFilter } from "electron";
-import FileData from "../../common/FileData";
+import FileData from "../../src/common/FileData";
 
 const fileFilters: FileFilter[] = [
     {

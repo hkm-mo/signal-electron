@@ -1,4 +1,4 @@
-import FileData from "src/common/FileData"
+import FileData from "../../common/FileData"
 import { songFromMidi, songToMidi } from "../../common/midi/midiConversion"
 import RootStore from "../stores/RootStore"
 import { setSong } from "./song"

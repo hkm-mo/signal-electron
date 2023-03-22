@@ -3,14 +3,15 @@ import type { Configuration } from 'webpack';
 import { plugins } from './webpack.plugins';
 import { rules } from './webpack.rules';
 
-rules.push({
+const computedRules = rules(true);
+computedRules.push({
   test: /\.css$/,
   use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
 });
 
 export const rendererConfig: Configuration = {
   module: {
-    rules,
+    rules: computedRules,
   },
   plugins,
   resolve: {

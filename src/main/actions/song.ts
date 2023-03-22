@@ -7,14 +7,6 @@ import RootStore from "../stores/RootStore"
 import { songFromFile } from "./file"
 import { pushHistory } from "./history"
 
-const openSongFile = async (input: HTMLInputElement): Promise<Song | null> => {
-  if (input.files === null || input.files.length === 0) {
-    return Promise.resolve(null)
-  }
-
-  const file = input.files[0]
-  return await songFromFile(file)
-}
 
 export const setSong = (rootStore: RootStore) => (song: Song) => {
   rootStore.song = song
@@ -40,15 +32,6 @@ export const saveSong = (rootStore: RootStore) => () => {
   song.isSaved = true
   downloadSongAsMidi(song)
 }
-
-export const openSong =
-  (rootStore: RootStore) => async (input: HTMLInputElement) => {
-    const song = await openSongFile(input)
-    if (song === null) {
-      return
-    }
-    setSong(rootStore)(song)
-  }
 
 export const addTrack = (rootStore: RootStore) => () => {
   pushHistory(rootStore)()

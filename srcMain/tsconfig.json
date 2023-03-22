@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "rootDirs": ["./"],
+    "sourceMap": true,
+    "target": "ES2020",
     "allowJs": false,
     "module": "CommonJS",
     "esModuleInterop": true,
@@ -8,7 +10,9 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "alwaysStrict": true,
+    "useDefineForClassFields": true,
+    "resolveJsonModule": true,
     "strict": true,
   },
-  "include": ["./*"]
+  "include": ["./**/*", "../src/common/**/*"]
 }

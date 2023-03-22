@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "types": [
+      "node",
+      "jest",
+      "webpack-env",
+      "webmidi",
+      "wicg-file-system-access"
+    ],
+    "rootDirs": ["./"],
+    "sourceMap": true,
+    "target": "esnext",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "module": "esnext",
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "lib": ["ES2020", "dom"],
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+    "useDefineForClassFields": true,
+    "resolveJsonModule": true,
+    "strict": true,
+  },
+  "include": ["./**/*"]
+}
