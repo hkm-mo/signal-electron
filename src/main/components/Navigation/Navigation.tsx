@@ -4,7 +4,7 @@ import Forum from "mdi-react/ForumIcon"
 import Help from "mdi-react/HelpCircleIcon"
 import Settings from "mdi-react/SettingsIcon"
 import { observer } from "mobx-react-lite"
-import { CSSProperties, FC, useCallback } from "react"
+import { CSSProperties, FC, useCallback, useEffect } from "react"
 import { envString } from "../../../common/localize/envString"
 import { Localized } from "../../../components/Localized"
 import { Tooltip } from "../../../components/Tooltip"
@@ -100,6 +100,11 @@ export const Navigation: FC = observer(() => {
     song,
   } = useStores()
 
+  const titleStr = `${song.name.length === 0 ? "New song" : song.name}${song.isSaved ? "" : " *"}`
+  useEffect(() => {
+    document.title = `${titleStr} - Electron Signal`
+  })
+
   return (
     <Container>
       <FileMenuButton />
@@ -165,8 +170,7 @@ export const Navigation: FC = observer(() => {
       </Tooltip>
 
       <TitleBar>
-        {song.name.length === 0 ? "New song" : song.name}
-        {song.isSaved ? "" : " *"}
+        {titleStr}
       </TitleBar>
 
       <Tab
